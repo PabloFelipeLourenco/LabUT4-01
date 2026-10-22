@@ -21,7 +21,6 @@ public class MainHangar {
         try {
             System.out.println("===== SISTEMA DE CONTROL DE HANGARES =====");
 
-            // Registrar una nueva nave
             Nave nave = new Nave(
                     "TIE Interceptor",
                     "TI-v2",
