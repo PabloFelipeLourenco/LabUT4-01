@@ -38,6 +38,7 @@ public class HangarControl {
         }
     }
 
+    // Actualizar estado de naves
     public void actualizarEstadoNave(int idNave, String nuevoEstado) {
         Transaction tx = null;
 
