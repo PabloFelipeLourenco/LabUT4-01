@@ -7,9 +7,9 @@
     <session-factory>
         <!-- 1. Propiedades de conexión de la Base de Datos -->
         <property name="connection.driver_class">org.postgresql.Driver</property>
-        <property name="connection.url">jdbc:postgresql://localhost:5432/imperio_db</property>
-        <property name="connection.username">postgres</property>
-        <property name="connection.password">1234</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/lab5</property>
+        <property name="connection.username">openpg</property>
+        <property name="connection.password">openpgpwd</property>
 
         <!-- 2. Dialecto SQL específico para optimizar las consultas a PostgreSQL -->
         <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>

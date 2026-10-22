@@ -21,7 +21,7 @@ public class MainLogistica {
             
             //Registra una nueva nave
             Nave tieBasico = new Nave(
-                    "TIE Basico",
+                    "Caza TIE Basico",
                     "TI-v2",
                     1,
                     "Critico",
@@ -29,7 +29,7 @@ public class MainLogistica {
             );
             
             Nave tieBomber = new Nave(
-                    "TIE Bomber",
+                    "Caza TIE Bomber",
                     "TI-v2",
                     1,
                     "Critico",

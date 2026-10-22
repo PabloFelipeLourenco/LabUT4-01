@@ -35,7 +35,7 @@ public class Nave implements Serializable {
     private String estadoSistema; //Se crea tambien la variable estadoSistema
     
     @ManyToOne(fetch = FetchType.LAZY) // LAZY evita cargar el planeta de la BD a menos que se invoque explícitamente
-    @JoinColumn(name = "planeta_origen_id", foreignKey = @ForeignKey(name = "FK_NAVE_PLANETA"))
+    @JoinColumn(name = "planet_id", foreignKey = @ForeignKey(name = "FK_NAVE_PLANETA"))
     private Planeta planetaOrigen;
 
     

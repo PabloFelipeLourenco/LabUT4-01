@@ -1,4 +1,6 @@
 ut4\util\HibernateUtil.class
-ut4\modelo\Nave.class
 ut4\pruebas\HangarControl.class
-ut4\pruebas\MainHangar.class
+ut4\pruebas\PlanetarioControl.class
+ut4\modelo\Nave.class
+ut4\modelo\Planeta.class
+ut4\pruebas\MainLogistica.class
