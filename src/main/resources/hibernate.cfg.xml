@@ -25,6 +25,7 @@
         <property name="hbm2ddl.auto">update</property>
         
         <!-- Aquí se declararán más adelante las clases mapeadas/entidades -->
-        <!-- <mapping class="ut4.modelo.NaveEntity"/> -->
+        <mapping class="ut4.modelo.Nave"/>
+        <mapping class="ut4.modelo.Planeta"/>
     </session-factory>
 </hibernate-configuration>

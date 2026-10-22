@@ -5,6 +5,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import java.io.Serializable;
 
 @Entity  //Clase Persistente (Entidad) que mapea la tabla 'naves' de PostgreSQL.
@@ -29,18 +33,25 @@ public class Nave implements Serializable {
 
     @Column(name = "estado_sistema", nullable = false, length = 20) //Asi es como se crea la columna estado_sistema
     private String estadoSistema; //Se crea tambien la variable estadoSistema
+    
+    @ManyToOne(fetch = FetchType.LAZY) // LAZY evita cargar el planeta de la BD a menos que se invoque explícitamente
+    @JoinColumn(name = "planeta_origen_id", foreignKey = @ForeignKey(name = "FK_NAVE_PLANETA"))
+    private Planeta planetaOrigen;
 
+    
     //Constructor vacio
     public Nave() {
     }
 
     //Constructor hecho para pasarle los parametros
-    public Nave(String nombre, String modelo, int capacidadPasajeros, String estadoSistema) {
+    public Nave(String nombre, String modelo, int capacidadPasajeros, String estadoSistema, Planeta planetaOrigen) {
         this.nombre = nombre;
         this.modelo = modelo;
         this.capacidadPasajeros = capacidadPasajeros;
         this.estadoSistema = estadoSistema;
+        this.planetaOrigen = planetaOrigen;
     }
+
 
     //Getter y Setter
     public int getId() { return id; }
@@ -57,6 +68,10 @@ public class Nave implements Serializable {
 
     public String getEstadoSistema() { return estadoSistema; }
     public void setEstadoSistema(String estadoSistema) { this.estadoSistema = estadoSistema; }
+    
+    public Planeta getPlanetaOrigen() { return planetaOrigen; }
+    public void setPlanetaOrigen(Planeta planetaOrigen) { this.planetaOrigen = planetaOrigen; }
+
 
     //Mensaje personalizado paa imprimir una nave en consola
     @Override
