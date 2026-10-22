@@ -21,7 +21,7 @@ public class MainHangar {
         try {
             System.out.println("===== SISTEMA DE CONTROL DE HANGARES =====");
 
-            // 1. Registrar una nueva nave
+            // Registrar una nueva nave
             Nave nave = new Nave(
                     "TIE Interceptor",
                     "TI-v2",
@@ -31,7 +31,7 @@ public class MainHangar {
 
             control.registrarNuevaNave(nave);
 
-            // 2. Actualizar su estado
+            // Actualizar su estado
             if (nave.getId() != 0) {
                 control.actualizarEstadoNave(
                         nave.getId(),
@@ -39,7 +39,7 @@ public class MainHangar {
                 );
             }
 
-            // 3. Consultar las naves del modelo TI-v2
+            // Consultar las naves del modelo TI-v2
             System.out.println("\n===== ESCANEO DE CAZAS TI-v2 =====");
 
             List<Nave> naves = control.obtenerCazasPorModelo("TI-v2");
