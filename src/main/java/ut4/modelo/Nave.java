@@ -1,14 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ut4.modelo;
-
-/**
- *
- * @author pablo
- */
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
@@ -17,41 +7,34 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
 import java.io.Serializable;
 
-/**
- * Clase Persistente (Entidad) que mapea la tabla 'naves' de PostgreSQL.
- * Sigue la especificación oficial de Jakarta Persistence (JPA).
- */
-@Entity 
+@Entity  //Clase Persistente (Entidad) que mapea la tabla 'naves' de PostgreSQL.
 @Table(name = "naves") // Vincula la clase con la tabla exacta de la BD
 public class Nave implements Serializable {
 
-    // 1. Clave Primaria Autonumérica
+    //Clave Primaria que se autogenera, no es necesario ponerla
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Mapea el tipo 'SERIAL' de Postgres
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Mapea el tipo 'SERIAL' de Postgrest
     @Column(name = "nave_id") // Vincula el atributo con el nombre exacto de la columna
     private int id;
 
-    // 2. Columnas obligatorias (NOT NUL)
-    @Column(name = "nombre", nullable = false, length = 100)
-    private String nombre;
+    //Columnas obligatorias (que no pueden ser null)
+    @Column(name = "nombre", nullable = false, length = 100) //Asi es como se crea la columna nombre //nullable la hace obligatoria //lenght dice el numero maximo de caracteres que puede tener el campo
+    private String nombre; //Se crea tambien la variable nombre
 
-    @Column(name = "modelo", nullable = false, length = 50)
-    private String modelo;
+    @Column(name = "modelo", nullable = false, length = 50) //Asi es como se crea la columna modelo
+    private String modelo; //Se crea tambien la variable modelo
 
-    @Column(name = "capacidad_pasajeros", nullable = false)
-    private int capacidadPasajeros;
+    @Column(name = "capacidad_pasajeros", nullable = false) //Asi es como se crea la columna capacidad_pasajeros
+    private int capacidadPasajeros; //Se crea tambien la variable capacidadPasajeros
 
-    @Column(name = "estado_sistema", nullable = false, length = 20)
-    private String estadoSistema;
+    @Column(name = "estado_sistema", nullable = false, length = 20) //Asi es como se crea la columna estado_sistema
+    private String estadoSistema; //Se crea tambien la variable estadoSistema
 
-    // Nota: Dejamos fuera temporalmente 'planeta_origen_id' para explicar 
-    // las relaciones @ManyToOne en la siguiente sesión práctica.
-
-    // === REQUISITO MANDATORIO JPA: Constructor vacío (por defecto) ===
+    //Constructor vacio
     public Nave() {
     }
 
-    // Constructor parametrizado para facilitar las inserciones en los laboratorios
+    //Constructor hecho para pasarle los parametros
     public Nave(String nombre, String modelo, int capacidadPasajeros, String estadoSistema) {
         this.nombre = nombre;
         this.modelo = modelo;
@@ -59,7 +42,7 @@ public class Nave implements Serializable {
         this.estadoSistema = estadoSistema;
     }
 
-    // === Métodos de acceso públicos (Getters y Setters) ===
+    //Getter y Setter
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -75,9 +58,9 @@ public class Nave implements Serializable {
     public String getEstadoSistema() { return estadoSistema; }
     public void setEstadoSistema(String estadoSistema) { this.estadoSistema = estadoSistema; }
 
-    // Sobreescritura útil para las salidas por consola de NetBeans
+    //Mensaje personalizado paa imprimir una nave en consola
     @Override
     public String toString() {
-        return "🛸 [Nave Persistida] ID: " + id + " | " + nombre + " (" + modelo + ") - Estado: " + estadoSistema;
+        return "[Nave Persistida] ID: " + id + " | " + nombre + " (" + modelo + ") - Estado: " + estadoSistema;
     }
 }
