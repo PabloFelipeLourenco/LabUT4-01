@@ -9,17 +9,20 @@ import ut4.util.HibernateUtil;
 public class MainLogistica {
 
     public static void main(String[] args) {
-        HangarControl control = new HangarControl(); //Creamos un objetoo para comunicarnos con la clase HangarControl
+        // Creamos los objetos para gestionar los hangares y los planetas
+        HangarControl control = new HangarControl();
         PlanetarioControl pc = new PlanetarioControl();
-        
+
         try {
             System.out.println("===== SISTEMA DE CONTROL DE HANGARES =====");
+
+            // Creamos un planeta con su nombre y sector galáctico
             Planeta planeta = new Planeta(
                     "Astillero de Corellia",
                     "Mundos del Núcleo"
             );
-            
-            //Registra una nueva nave
+
+            // Creamos las naves que pertenecen al planeta
             Nave tieBasico = new Nave(
                     "Caza TIE Basico",
                     "TI-v2",
@@ -27,7 +30,7 @@ public class MainLogistica {
                     "Critico",
                     planeta
             );
-            
+
             Nave tieBomber = new Nave(
                     "Caza TIE Bomber",
                     "TI-v2",
@@ -35,26 +38,32 @@ public class MainLogistica {
                     "Critico",
                     planeta
             );
-             
+
+            // Añadimos las naves al planeta y registramos el planeta
             planeta.agregarNave(tieBasico);
             planeta.agregarNave(tieBomber);
             pc.registrarNuevoPlaneta(planeta);
-                       
+
+            // Obtenemos el ID y recuperamos el planeta de la base de datos
             int idPlaneta = planeta.getId();
             Planeta recuperado = pc.obtenerPlanetaPorId(idPlaneta);
 
+            // Comprobamos si se ha encontrado el planeta
             if (recuperado == null) {
                 System.out.println("No se encontró el planeta con ID " + idPlaneta);
             } else {
                 System.out.println("\n===== MANIFIESTO DE " + recuperado.getNombrePlaneta().toUpperCase() + " =====");
                 System.out.println(recuperado);
+
+                // Mostramos todas las naves del planeta
                 for (Nave n : recuperado.getListaNaves()) {
                     System.out.println(" - " + n);
                 }
             }
 
         } finally {
-            HibernateUtil.shutdown(); //Sirve para cerrar la conexion con la base de datos si o si se de un error o no
+            // Cerramos Hibernate aunque se produzca un error
+            HibernateUtil.shutdown();
         }
     }
 }

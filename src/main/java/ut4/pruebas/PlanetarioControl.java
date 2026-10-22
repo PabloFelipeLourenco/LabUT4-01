@@ -8,17 +8,20 @@ import ut4.util.HibernateUtil;
 
 public class PlanetarioControl {
 
-    // Persiste el planeta y, por cascade ALL, también sus naves
+    // Registra el planeta y también sus naves gracias a cascade ALL
     public void registrarNuevoPlaneta(Planeta planeta) {
         Transaction tx = null;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Iniciamos la transacción y guardamos el planeta
             tx = session.beginTransaction();
             session.persist(planeta);
             tx.commit();
+
             System.out.println("Planeta registrado correctamente: " + planeta);
 
         } catch (Exception e) {
+            // Deshacemos los cambios si ocurre un error
             if (tx != null && tx.isActive()) {
                 tx.rollback();
             }
@@ -26,12 +29,14 @@ public class PlanetarioControl {
         }
     }
 
-    // Recupera un planeta por ID con su lista de naves ya cargada
+    // Busca un planeta por su ID
     public Planeta obtenerPlanetaPorId(int id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Planeta planeta = session.get(Planeta.class, id);
+
+            // Cargamos las naves antes de cerrar la sesión
             if (planeta != null) {
-                Hibernate.initialize(planeta.getListaNaves()); // carga la colección LAZY
+                Hibernate.initialize(planeta.getListaNaves());
             }
             return planeta;
 
